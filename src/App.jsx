@@ -9,6 +9,7 @@ import Services from "./Pages/Services";
 import DiseasePrediction from "./Pages/DiseasePrediction";
 import Profile from "./Pages/Profile";
 import Chattbot from "./components/chatbot/Chatbot";
+import DoctorRecommed from "./Pages/DoctorRecommed";
 // import config from "./components/chatbot/config";
 // import MessageParser from "./components/chatbot/MessageParser";
 // import ActionProvider from "./components/chatbot/ActionProvider";
@@ -19,7 +20,6 @@ import Chattbot from "./components/chatbot/Chatbot";
 function App() {
   return (
     <div className="bg-white dark:bg-gray-900 scrollbar-hide overflow-hidden">
-      
       <Nav />
       {/* <Chattbot /> */}
       <Routes>
@@ -30,6 +30,7 @@ function App() {
         <Route path="/services" element={<Services />} />
         <Route path="/predict" element={<DiseasePrediction />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/recommend" element={<DoctorRecommed />} />
       </Routes>
       <Nav_sm />
     </div>

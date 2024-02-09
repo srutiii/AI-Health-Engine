@@ -87,11 +87,8 @@ function HomePage() {
             </div>
           </div>
         </div>
-        <div className="flex  justify-center ">
-        <Service />
-      </div>
-        {/* <div className="my-40"><Blogs /></div> */}
-        {/* <Service/> */}
+        ]
+        <div className="my-20"><Blogs /></div>
         <div className="">
           <Testimonials />
         </div>

@@ -5,7 +5,7 @@ import Footer from "../components/Footer";
 
 const Service = () => {
   return (
-    <section className=" dark:bg-gray-900 mt-10">
+    <section className=" dark:bg-gray-900 mt-20">
       <div className="container mx-auto">
         <div className="-mx-2 flex flex-wrap">
           <div className="w-full px-4 font-nunito text-blue-400 dark:text-cyan-600">
@@ -36,6 +36,7 @@ const Service = () => {
             title="Doctor Recommendation"
             details="Redefining healthcare recommendations, our system seamlessly matches patients with suitable doctors using advanced algorithms. Personalized and precise, it ensures optimal healthcare partnerships for enhanced well-being."
             icon="src/assets/cardiologist.gif"
+            link="/recommend"
           />
           <ServiceCard
             title="Chatbot Assistant"

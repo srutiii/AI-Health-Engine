@@ -39,9 +39,9 @@ function Nav() {
             >
               Contact Us
             </Link>
-            <Link className="py-1 px-4 font-semibold text-xl border border-transparent rounded-full hover:border-b-blue-950 cursor-pointer hover:scale-105 ease-in-out  hover:text-blue-950 dark:hover:text-cyan-400  dark:hover:border-b-cyan-400 hover:shadow-md  dark:hover:shadow-cyan-600 hover:shadow-blue-950">
+            {/* <Link className="py-1 px-4 font-semibold text-xl border border-transparent rounded-full hover:border-b-blue-950 cursor-pointer hover:scale-105 ease-in-out  hover:text-blue-950 dark:hover:text-cyan-400  dark:hover:border-b-cyan-400 hover:shadow-md  dark:hover:shadow-cyan-600 hover:shadow-blue-950">
               <span className="">Founders</span>
-            </Link>
+            </Link> */}
           </div>
         </div>
         <div className="flex justify-center items-center text-white mr-6 ">

@@ -19,9 +19,28 @@ export const Signup = () => {
   const {values, errors, touched, handleBlur, handleChange, handleSubmit} = useFormik({
     initialValues : initialValues,
     validationSchema : signupSchema,
-    onSubmit : (values, action) => {
-      console.log(values);
-      action.resetForm()
+    onSubmit: async (values) => {
+      try {
+        const response = await fetch('http://localhost:5000/signup', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(values),
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+          // Handle successful signup, e.g., redirect to another page
+          console.log('Signup successful');
+        } else {
+          setError(data.message);
+        }
+      } catch (error) {
+        console.error('Error during signup:', error);
+        setError('An error occurred during signup');
+      }
     }
   })
 

@@ -13,28 +13,10 @@ export const Login = () => {
   const {values, errors, touched, handleSubmit, handleBlur, handleChange} = useFormik({
     initialValues: initialValues,
     validationSchema: loginSchema,
-    onSubmit: async (values) => {
-      try {
-        const response = await fetch('http://localhost:5000/login', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(values),
-        });
-
-        const data = await response.json();
-
-        if (data.success) {
-          // Handle successful login, e.g., redirect to another page or store authentication token
-          console.log('Login successful');
-        } else {
-          setError(data.message);
-        }
-      } catch (error) {
-        console.error('Error during login:', error);
-        setError('An error occurred during login');
-      }
+    onSubmit: (values, action) => {
+      console.log(values);
+      // console.log(errors);
+      action.resetForm();
     },
   });
 

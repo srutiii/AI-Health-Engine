@@ -11,7 +11,7 @@ import { FaArrowRight } from "react-icons/fa";
 function HomePage() {
   return (
     <div>
-      <div className="h-[700px]  md:flex flex-row   dark:bg-gray-900 dark:text-blue-300 ">
+      <div className="h-screen  md:flex flex-row   dark:bg-gray-900 dark:text-blue-300 ">
         <div className="flex flex-col justify-center items-center h-[50%] lg:h-full lg:w-[40%] w-full">
           <div className=" px-5 w-full flex justify-center items-center mt-10">
             <h1 className="   text-2xl md:text-6xl p-2 dark:text-cyan-400 mt-32 font-playfair font-semibold">
@@ -26,7 +26,7 @@ function HomePage() {
             </p>
           </div>
           <div className="mt-3">
-            <Link className="border-2 border-cyan-600 hover:border-cyan-900 px-8 py-4 rounded-lg relative transform transition hover:bg-cyan-900  hover:text-white text-cyan-500 flex">
+            <Link to='/login' className="border-2 border-cyan-600 hover:border-cyan-900 px-8 py-4 rounded-lg relative transform transition hover:bg-cyan-900  hover:text-white text-cyan-500 flex">
               <span className="capitalize font-bold  flex justify-center items-center  ">
                 Get started
                 <FaArrowRight className="flex justify-center items-center w-10 px-1 " />
@@ -87,7 +87,7 @@ function HomePage() {
             </div>
           </div>
         </div>
-        ]
+        
         <div className="my-20"><Blogs /></div>
         <div className="">
           <Testimonials />

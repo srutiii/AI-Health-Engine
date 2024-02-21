@@ -5,10 +5,10 @@ import Footer from "../components/Footer";
 
 const Service = () => {
   return (
-    <section className=" dark:bg-gray-900 mt-20">
+    <section className=" dark:bg-gray-900 mt-20 bg-background">
       <div className="container mx-auto">
         <div className="-mx-2 flex flex-wrap">
-          <div className="w-full px-4 font-nunito text-blue-400 dark:text-cyan-600">
+          <div className="w-full px-4 font-nunito text-sub_heading dark:text-cyan-600">
             <div className="mx-auto mb-12 max-w-[510px] text-center lg:mb-10">
               <span className="mb-2  text-2xl font-semibold font-playfair">
                 Our Services
@@ -69,9 +69,9 @@ export default Service;
 const ServiceCard = ({ icon, title, details, link }) => {
   return (
     <>
-      <div className="w-full  px-4 md:w-1/2 lg:w-1/3">
-        <div className="mx-6 md:mx-0 mb-9 rounded-[20px]  dark:bg-gray-300 border-2 border-blue-400 dark:border-cyan-800 shadow shadow-black p-10 transform transition duration-300 hover:scale-110 dark:bg-dark-2 md:px-7 xl:px-10 font-nunito">
-          <div className="mb-8 flex justify-between h-[70px] md:w-full items-center rounded-2xl bg-primary">
+      <div className="w-full  px-4 md:w-1/2 lg:w-1/3 bg-background">
+        <div className="mx-6 md:mx-0 mb-9 rounded-[20px]  dark:bg-gray-300 border-2 border-block dark:border-cyan-800 shadow shadow-black p-10 transform transition duration-300 hover:scale-110 dark:bg-dark-2 md:px-7 xl:px-10 font-nunito bg-background">
+          <div className="mb-8 flex justify-between h-[70px] md:w-full items-center rounded-2xl ">
             <img src={icon} alt="" className="w-20 mix-blend-multiply " />
             <Link to={link}>
               <button className="bg-blue-400 dark:bg-cyan-600 px-4 py-2 rounded hover:bg-blue-300 font-semibold text-white hover:dark:bg-cyan-600">
@@ -79,10 +79,10 @@ const ServiceCard = ({ icon, title, details, link }) => {
               </button>
             </Link>
           </div>
-          <h4 className="mb-[14px] text-2xl font-semibold text-dark">
+          <h4 className="mb-[14px] text-2xl font-semibold text-dark ">
             {title}
           </h4>
-          <p className="text-gray-800   text-sm">{details}</p>
+          <p className="text-gray-800 text-justify  text-sm">{details}</p>
         </div>
       </div>
     </>

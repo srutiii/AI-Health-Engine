@@ -9,7 +9,30 @@ export default {
       sans: ["Open Sans", "sans-serif"],
       playfair: ["Playfair Display", "serif"],
     },
-    extend: {},
+    extend: {
+      colors: {
+        background: "#EEF5FF",
+        heading: "#453C67",
+        button: "#D56073",
+        block: "#78C1F3",
+        sub_heading: "#0E2954",
+      },
+      keyframes: {
+        slidein: {
+          from: {
+            opacity: "0",
+            transform: "translateY(-10px)",
+          },
+          to: {
+            opacity: "1",
+            transform: "translateY(0)",
+          },
+        },
+      },
+      animation: {
+        slidein: "slidein 1s ease 300ms",
+      },
+    },
   },
   plugins: [require("tailwind-scrollbar-hide")],
 };

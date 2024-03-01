@@ -1,113 +1,26 @@
-import React, { useState } from 'react';
-import { Dropdown, DropdownItem } from "flowbite-react";
-import Doctor_card from '../components/Doctor_card';
+import React, { useState } from "react";
+// import { Dropdown, DropdownItem } from "flowbite-react";
+import Doctor_card from "../components/Doctor_card";
+
+import Box from "@mui/material/Box";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
 
 function DoctorRecommed() {
-  const [specializationFilter, setSpecializationFilter] = useState(null);
-  const [locationFilter, setLocationFilter] = useState(null);
+  // const [specializationFilter, setSpecializationFilter] = useState(null);
+  // const [locationFilter, setLocationFilter] = useState(null);
+  const [Specialisation, setSpecialisation] = React.useState("");
+  const [Location, setLocation] = React.useState("");
 
-  const Doctors = [
-    {
-      id: 1,
-      name: "Suresh H. Advani",
-      city: "Mumbai",
-      Specialisation: "Oncologist",
-      clinic: "Jaslok Hospital, Mumbai",
-    },
-    {
-      id: 2,
-      name: "Ashok Seth",
-      city: "New Delhi",
-      Specialisation: "Cardiologist",
-      clinic: "Fortis Escorts Heart Institute, New Delhi",
-    },
-    {
-      id: 3,
-      name: "P S Binu",
-      city: "Kochi",
-      Specialisation: "General Surgeon",
-      clinic: "Aster Medcity Kochi",
-    },
-    {
-      id: 4,
-      name: "Sandeep Vaishya",
-      city: "New Delhi",
-      Specialisation: "Neurosurgeon",
-      clinic: "Fortis Escorts Heart Institute, New Delhi",
-    },
-    {
-      id: 5,
-      name: "Harit Chaturvedi",
-      city: "New Delhi",
-      Specialisation: "Oncologist",
-      clinic: "Max Super Speciality Hospital, Saket, New Delhi",
-    },
-    {
-      id: 7,
-      name: "P.K. Gambhir",
-      city: "New Delhi",
-      Specialisation: "General Surgeon",
-      clinic: "Saroj Super Speciality Hospital",
-    },
-    {
-      id: 8,
-      name: "Devi Prasad Shetty",
-      city: "Bangalore",
-      Specialisation: "Cardiac Surgeon",
-      clinic: "Narayana Multispeciality Hospital, Bangalore",
-    },
-    {
-      id: 9,
-      name: "S Radhakrishnan",
-      city: "Gurgaon",
-      Specialisation: "Pediatric Cardiac Surgeon",
-      clinic: "Medanta - The Medicity, Gurgaon",
-    },
-    {
-      id: 10,
-      name: "Basanta Behera",
-      city: "Bhubaneswar",
-      Specialisation: "Orthopaedic",
-      clinic: "AMRI Hospitals, Bhubaneswar",
-    },
-    {
-      id: 11,
-      name: "Pradeep Sen",
-      city: "Kolkata",
-      Specialisation: "Cosmetic Surgeon",
-      clinic: "Apollo Hospital, Kolkata",
-    },
-  ];
-
-  const locations = {
-    Mumbai: "Mumbai",
-    "New Delhi": "New Delhi",
-    Kochi: "Kochi",
-    Bangalore: "Bangalore",
-    Gurgaon: "Gurgaon",
-    Bhubaneswar: "Bhubaneswar",
-    Kolkata: "Kolkata",
+  const handleChangespe = (event) => {
+    setSpecialisation(event.target.value);
   };
-
-  const specializations = {
-    Oncologist: "Oncologist",
-    Cardiologist: "Cardiologist",
-    "General Surgeon": "General Surgeon",
-    Neurosurgeon: "Neurosurgeon",
-    "Pediatric Cardiac Surgeon": "Pediatric Cardiac Surgeon",
-    Orthopaedic: "Orthopaedic",
-    "Cosmetic Surgeon": "Cosmetic Surgeon",
-    "Cardiac Surgeon": "Cardiac Surgeon",
+  const handleChangeLocation = (event) => {
+    setLocation(event.target.value);
   };
-
-  const filteredDoctors = Doctors.filter((doctor) => {
-    return (
-      (!specializationFilter ||
-        doctor.Specialisation === specializationFilter) &&
-      (!locationFilter || doctor.city === locationFilter)
-    );
-  });
-
+  
   return (
     <div className="w-full">
       <div className="">
@@ -125,45 +38,53 @@ function DoctorRecommed() {
           />
         </div>
         <div className="flex px-10 py-3 w-full">
-          <div className="px-2 ">
-            <Dropdown
-              label="Location"
-              value={locationFilter}
-              dismissOnClick={false}
-              onChange={(value) => setLocationFilter(value)}
-            >
-              {Object.keys(locations).map((location) => (
-                <DropdownItem
-                  key={location}
-                  value={location}
-                  className="hover:bg-gray-300"
+          <div className="px-6 flex ">
+            <div className="px-4">
+              <Box sx={{ minWidth: 180 }}>
+                <FormControl fullWidth>
+                  <InputLabel id="demo-simple-select-label">
+                    Specialisation
+                  </InputLabel>
+                  <Select
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    value={Specialisation}
+                    label="Specialisation"
+                    onChange={handleChangespe}
+                  >
+                    <MenuItem value="Oncologist">Oncologist</MenuItem>
+                    <MenuItem value="Cardiologist">Cardiologist</MenuItem>
+                    <MenuItem value="Neurosurgeon">Neurosurgeon</MenuItem>
+                    <MenuItem value="Cardiac Surgeon">Cardiac Surgeon</MenuItem>
+                    <MenuItem value="Orthopaedic">Orthopaedic</MenuItem>
+                    <MenuItem value="Cosmetic Surgeon">
+                      Cosmetic Surgeon
+                    </MenuItem>
+                  </Select>
+                </FormControl>
+              </Box>
+            </div>
+            <Box sx={{ minWidth: 120 }}>
+              <FormControl fullWidth>
+                <InputLabel id="demo-simple-select-label">Location</InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={Location}
+                  label="Location"
+                  onChange={handleChangeLocation}
                 >
-                  {location}
-                </DropdownItem>
-              ))}
-            </Dropdown>
+                  <MenuItem value="Kolkata">Kolkata</MenuItem>
+                  <MenuItem value="New Delhi">New Delhi</MenuItem>
+                  <MenuItem value="Bangalore">Banglore</MenuItem>
+                  <MenuItem value="Kochi">Kochi</MenuItem>
+                  <MenuItem value="Kota">Kota</MenuItem>
+                  <MenuItem value="Chennai">Chennai</MenuItem>
+                </Select>
+              </FormControl>
+            </Box>
           </div>
-          <div className=" w-full">
-            <Dropdown
-              label="Doctor's Specialization"
-              value={specializationFilter}
-              dismissOnClick={false}
-              onChange={(value) => setSpecializationFilter(value)}
-            >
-              {Object.keys(specializations).map((specialization) => (
-                <DropdownItem
-                  key={specialization}
-                  value={specialization}
-                  className="hover:bg-gray-300"
-                >
-                  {specialization}
-                </DropdownItem>
-              ))}
-            </Dropdown>
-          </div>
-          {/* <div className='flex items-center justify-end w-full text-gray-500 text-sm'>Results 10</div> */}
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 px-3 py-3 overflow-hidden place-items-center">
+          {/* <div className="grid grid-cols-1 md:grid-cols-3 gap-5 px-3 py-3 overflow-hidden place-items-center">
           {filteredDoctors.map((doctor) => (
             <Doctor_card
               key={doctor.id}
@@ -173,6 +94,7 @@ function DoctorRecommed() {
               Specialization={doctor.Specialisation}
             />
           ))}
+        </div> */}
         </div>
       </div>
     </div>

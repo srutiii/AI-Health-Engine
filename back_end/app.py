@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify
-# from flask_cors import CORS
-# from flask_mysqldb import MySQL
+from flask_cors import CORS
+from flask_mysqldb import MySQL
 import pandas as pd
 import numpy as np
 import pickle
@@ -9,20 +9,24 @@ from scipy.stats import mode
 import warnings
 from sklearn.ensemble import RandomForestClassifier
 from collections import Counter
+from flask_bcrypt import Bcrypt 
+
 
 
 app = Flask(__name__)
-# CORS(app) 
+bcrypt = Bcrypt(app) 
+CORS(app) 
 
 
-# app.config['MYSQL_HOST'] = 'localhost'
-# app.config['MYSQL_USER'] = 'root'
-# app.config['MYSQL_PASSWORD'] = ''
-# app.config['MYSQL_DB'] = 'helloAI'
+app.config['MYSQL_HOST'] = 'localhost'
+app.config['MYSQL_USER'] = 'root'
+app.config['MYSQL_PASSWORD'] = ''
+app.config['MYSQL_DB'] = 'helloAI'
  
-# mysql = MySQL(app)
+mysql = MySQL(app)
 
 #removing warnings
+
 warnings.filterwarnings("ignore", category=UserWarning)
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 
@@ -44,36 +48,46 @@ with open('./models/Doctor_Specialist_Model.pkl', 'rb') as f:
 
 
 
-# @app.route('/login', methods=['POST'])
-# def login():
+@app.route('/login', methods=['POST'])
+def login():
 
-#     data = request.get_json()
-#     email = data.get('email')
-#     password = data.get('password')
-#     print(email,password)
+    data = request.get_json()
+    email = data.get('email')
+    password = data.get('password')
+    print(email,password)
+
+    
+
+    return data
+
+@app.route('/signup', methods=['POST'])
+def signup():
+
+    data = request.get_json()
+
+    first_name = data.get('first_name')
+    last_name = data.get('last_name')
+    email = data.get('email')
+    phone_number = data.get('phone_number')
+    password = data.get('password')
+
+    hashed_password = bcrypt.generate_password_hash(password)
+    bcrypt_pwd = bcrypt.check_password_hash(hashed_password,password)
+#    is_valid = bcrypt.check_password_hash 
+#    (hashed_password, password) 
+
+    print(hashed_password)
+    print(bcrypt_pwd)
 
 
-#     return data
 
-# @app.route('/signup', methods=['POST'])
-# def signup():
+    print(data)
+    cursor = mysql.connection.cursor()
+    cursor.execute("INSERT INTO signup VALUES (%s,%s,%s,%s,%s)",(first_name,last_name,email,phone_number,hashed_password))
+    cursor.connection.commit()
+    cursor.close()
 
-#     data = request.get_json()
-
-#     first_name = data.get('first_name')
-#     last_name = data.get('last_name')
-#     email = data.get('email')
-#     phone_number = data.get('phone_number')
-#     password = data.get('password')
-
-
-#     print(data)
-#     cursor = mysql.connection.cursor()
-#     cursor.execute("INSERT INTO signup VALUES (%s,%s,%s,%s,%s)",(first_name,last_name,email,phone_number,password))
-#     cursor.connection.commit()
-#     cursor.close()
-
-#     return jsonify({"success": True, "message": "Registration successful"})
+    return jsonify({"success": True, "message": "Registration successful"})
 
 
 #Route for disease prediction...

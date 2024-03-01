@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, session
 from flask_cors import CORS
 from flask_mysqldb import MySQL
 import pandas as pd
@@ -10,12 +10,25 @@ import warnings
 from sklearn.ensemble import RandomForestClassifier
 from collections import Counter
 from flask_bcrypt import Bcrypt 
+from flask_mail import Mail, Message
 
 
 
 app = Flask(__name__)
+
+app.config['MAIL_SERVER'] = 'sandbox.smtp.mailtrap.io'
+app.config['MAIL_PORT'] = 2525
+app.config['MAIL_USERNAME'] = 'zerowood70@gmail.com'
+app.config['MAIL_PASSWORD'] = '1julyabhi'
+app.config['MAIL_USE_TLS'] = True
+app.config['MAIL_USE_SSL'] = False
+
+
 bcrypt = Bcrypt(app) 
 CORS(app) 
+mail = Mail(app)
+
+app.secret_key = "helloAI"
 
 
 app.config['MYSQL_HOST'] = 'localhost'
@@ -47,7 +60,7 @@ with open('./models/Doctor_Specialist_Model.pkl', 'rb') as f:
    specialization = pickle.load(f)
 
 
-
+#This is a Login Page
 @app.route('/login', methods=['POST'])
 def login():
 
@@ -56,10 +69,22 @@ def login():
     password = data.get('password')
     print(email,password)
 
-    
+    cursor = mysql.connection.cursor()
+    cursor.execute('SELECT * FROM signup WHERE email = %s', (email,))
+    user = cursor.fetchone()
+    cursor.close()
 
-    return data
+    print(user)
 
+    if user and bcrypt.check_password_hash(user[4], password):  # Assuming that password is the third column in the users table
+        session['email'] = email
+        return jsonify({"login":"login Successful"})
+        return jsonify(logged_in=True, email=email)
+    else:
+        return jsonify(logged_in=False, message='Login failed. Please check your email and password.')
+
+
+#This is SignUp Form
 @app.route('/signup', methods=['POST'])
 def signup():
 
@@ -89,6 +114,19 @@ def signup():
 
     return jsonify({"success": True, "message": "Registration successful"})
 
+
+#This is for Contact Us form
+@app.route('/contact', methods = ['GET','POST'])
+def contact():
+
+    data = request.get_json()
+
+
+
+    msg = Message(subject='Hello from the other side!', sender='peter@mailtrap.io', recipients=['paul@mailtrap.io'])
+    msg.body = "Hey Paul, sending you this email from my Flask app, lmk if it works"
+    mail.send(msg)
+    return "Message sent!"
 
 #Route for disease prediction...
 @app.route('/diseasepredict/<symptoms>',methods = ['GET','POST'])

@@ -4,7 +4,7 @@ function Card({title, img, feedback, author }) {
   return (
     <div className="">
       <div className=" md:h-[250px] h-[200px] flex  justify-center items-center my-5">
-        <div className="flex w-[400px] md:w-[650px] h-[200px] md:h-[200px]   dark:text-cyan-600 dark:bg-gray-700 text-black shadow-md shadow-cyan-800 mx-2 p-5 justify-center text-center font-nunito">
+        <div className="flex w-[400px] md:w-[650px] h-[200px] md:h-[200px] text-light_text  dark:text-dark_text dark:bg-gray-700  shadow-md shadow-dark_text mx-2 p-5 justify-center text-center font-nunito">
           <div className=" flex justify-center items-center  w-[20%] d">
             <img
               src={img}

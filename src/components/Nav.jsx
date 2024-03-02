@@ -18,14 +18,14 @@ function Nav() {
       <div className="fixed z-20 w-full flex justify-between bg-transparent font-nunito backdrop-blur-xl ">
         <div>
           <Link to="/">
-            <h1 className="font-sans font-extrabold cursor-pointer text-3xl sm:text-4xl md:text-6xl ml-6 p-3 text-heading">
+            <h1 className="font-sans font-extrabold cursor-pointer text-3xl sm:text-4xl md:text-6xl ml-6 p-3 text-heading text-light_text dark:text-dark_text">
               AI-He.
             </h1>
           </Link>
         </div>
         {/* Nav for larger screens */}
         <div className="xl:flex hidden">
-          <div className="flex justify-center items-center text-heading dark:text-cyan-500  ">
+          <div className="flex justify-center items-center text-heading text-light_text dark:text-dark_text ">
             <motion.div
               whileHover={{
                 scale: 1.2,
@@ -77,8 +77,8 @@ function Nav() {
             </button>
           </Link>
           <Link to="/signup">
-            <button className="bg-cyan-950 px-3 py-2 md:px-4 md:h-10 rounded m-2  font-nunito font-semibold ">
-              {" "}
+            <button className="bg-button px-3 py-2 md:px-4 md:h-10 rounded m-2  font-nunito font-semibold ">
+             
               Register
             </button>
           </Link>

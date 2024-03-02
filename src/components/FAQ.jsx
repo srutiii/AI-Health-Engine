@@ -5,14 +5,15 @@ function FAQ() {
     <div className="h-screen w-full dark:bg-gray-900  ">
       <div className="mb-32">
         <div className=" p-8">
-          <h2 className="mb-16 h text-4xl font-extrabold leading-9 text-blue-400 dark:text-cyan-600 border-b-2 border-gray-100 dark:border-cyan-600 font-playfair">
+          <h2 className="mb-16 h text-4xl font-extrabold leading-9 text-light_text dark:text-dar border-b-2 border-light_text dark:border-dark_text dark:text-dark_text font-playfair">
+
             FAQs
           </h2>
           <div className="flex h-full justify-between flex-col md:flex-row">
             <div className="flex  w-full px-4">
               <ul className="flex flex-col  items-start gap-8 font-nunito text-sm">
                 <li className="">
-                  <p className="md:text-lg font-medium leading-6 text-gray-900  dark:text-gray-200">
+                  <p className="md:text-lg font-medium leading-6 text-gray-600  dark:text-gray-200">
                     What is the AI HealthEngine, and how does it work?
                   </p>
                   <p className="mt-2">
@@ -26,7 +27,7 @@ function FAQ() {
                 </li>
 
                 <li className="">
-                  <p className="md:text-lg font-medium leading-6 text-gray-900 dark:text-gray-200">
+                  <p className="md:text-lg font-medium leading-6 text-gray-600 dark:text-gray-200">
                     Is my data secure and private?
                   </p>
                   <p className="mt-2">
@@ -42,7 +43,7 @@ function FAQ() {
             <div className="flex w-full px-4">
               <ul className="flex flex-col  items-start gap-8 font-nunito text-sm ">
                 <li className="">
-                  <p className="md:text-lg font-medium leading-6 text-gray-900 dark:text-gray-200">
+                  <p className="md:text-lg font-medium leading-6 text-gray-600 dark:text-gray-200">
                     How can I get started with the AI HealthEngine?
                   </p>
                   <p className="mt-2">
@@ -54,7 +55,7 @@ function FAQ() {
                   </p>
                 </li>
                 <li className="">
-                  <p className="md:text-lg font-medium leading-6 text-gray-900 dark:text-gray-200">
+                  <p className="md:text-lg font-medium leading-6 text-gray-600 dark:text-gray-200">
                     Is customer support available?
                   </p>
                   <p className="mt-2">

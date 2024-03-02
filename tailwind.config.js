@@ -11,11 +11,11 @@ export default {
     },
     extend: {
       colors: {
-        background: "#EEF5FF",
-        heading: "#453C67",
-        button: "#D56073",
-        block: "#78C1F3",
-        sub_heading: "#0E2954",
+        background: "#fffff4",
+        light_text: "#201658",
+        dark_text: "#98ABEE",
+        button: "#7d9bce",
+        
       },
       keyframes: {
         slidein: {

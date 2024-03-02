@@ -10,12 +10,6 @@ import DiseasePrediction from "./Pages/DiseasePrediction";
 import Profile from "./Pages/Profile";
 import Chatbot from "./components/chatbot/Chatbot";
 import DoctorRecommed from "./Pages/DoctorRecommed";
-// import config from "./components/chatbot/config";
-// import MessageParser from "./components/chatbot/MessageParser";
-// import ActionProvider from "./components/chatbot/ActionProvider";
-
-// import Chatbot from "react-chatbot-kit";
-// import "react-chatbot-kit/build/main.css";
 
 function App() {
   return (

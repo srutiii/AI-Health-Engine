@@ -19,7 +19,7 @@ function Testimonials() {
     <div className=" w-full md:h-[280px] h-[400px] p-5 ">
       <div className="">
         <div className="flex justify-center items-center">
-          <h1 className="capitalize text-3xl font-bold font-playfair xl:text-4xl text-blue-400 dark:text-cyan-600 ">
+          <h1 className="capitalize text-3xl font-bold font-playfair xl:text-4xl text-sub_heading dark:text-cyan-600 ">
             our happy clients
           </h1>
         </div>

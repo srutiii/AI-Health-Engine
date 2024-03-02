@@ -17,7 +17,7 @@ function HomePage() {
           <div className=" px-5 w-full flex justify-center items-center mt-10">
             <h1 className="animate-slidein [--slidein-delay:300ms]   text-2xl md:text-6xl p-2 dark:text-cyan-400 mt-32 font-playfair font-semibold">
               Revolutionize Healthcare with Our Advanced
-              <span className="text-heading flex animate-slidein [--slidein-delay:500ms] ">
+              <span className="text-block flex animate-slidein [--slidein-delay:500ms] ">
                 AI HealthEngine
               </span>
             </h1>

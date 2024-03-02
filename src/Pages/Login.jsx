@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import {useFormik} from 'formik'
 import { loginSchema } from "../schemas";
@@ -9,7 +9,10 @@ const initialValues = {
 };
 
 export const Login = () => {
- 
+  const [error, setError] = useState(null)
+  const [LoggedIn, setLoggedIn] = useState(false)
+
+
   const {values, errors, touched, handleSubmit, handleBlur, handleChange} = useFormik({
     initialValues: initialValues,
     validationSchema: loginSchema,
@@ -27,6 +30,7 @@ export const Login = () => {
 
         if (data.success) {
           // Handle successful login, e.g., redirect to another page or store authentication token
+          setLoggedIn(true)
           console.log('Login successful');
         } else {
           setError(data.message);

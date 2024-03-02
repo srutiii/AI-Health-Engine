@@ -6,15 +6,15 @@ import { Link } from "react-router-dom";
 
 const Team = () => {
   return (
-    <section className="pb-20 xl:mb-20 pt-5 text-black bg-white lg:pb-20  md:h-full dark:bg-gray-900 md:mt-40">
+    <section className="pb-20 xl:mb-20 pt-5 text-black bg-background lg:pb-20  md:h-full dark:bg-gray-900 md:mt-40">
       <div className="container mx-auto">
         <div className=" flex justify-center items-center w-fullww">
           <div className="flex items-center justify-center w-ful px-4">
             <div className="md:mx-auto mb-[50px] md:max-w-[510px] text-center">
-              <span className="mb-2 block text-3xl xl:text-4xl font-playfair dark:text-cyan-600 font-bold text-blue-400 text-primary">
+              <span className="text-sub_heading mb-2 block text-3xl xl:text-4xl font-playfair dark:text-cyan-600 font-bold  text-primary">
                 The Team
               </span>
-              <p className="text-xs italic text-blue-300 dark:text-white font-nunito md:text-lg">
+              <p className="text-xs italic text-gray-600 dark:text-white font-nunito md:text-lg">
                 "Together we shaped this idea into tangible platform."
               </p>
             </div>

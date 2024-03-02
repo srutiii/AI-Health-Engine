@@ -15,7 +15,20 @@ from flask_mail import Mail, Message
 
 
 app = Flask(__name__)
+
+app.config['MAIL_SERVER'] = 'sandbox.smtp.mailtrap.io'
+app.config['MAIL_PORT'] = 2525
+app.config['MAIL_USERNAME'] = 'zerowood70@gmail.com'
+app.config['MAIL_PASSWORD'] = '1julyabhi'
+app.config['MAIL_USE_TLS'] = True
+app.config['MAIL_USE_SSL'] = False
+
+
+bcrypt = Bcrypt(app) 
 CORS(app) 
+mail = Mail(app)
+
+app.secret_key = "helloAI"
 
 
 app.config['MYSQL_HOST'] = 'localhost'
@@ -24,13 +37,6 @@ app.config['MYSQL_PASSWORD'] = ''
 app.config['MYSQL_DB'] = 'helloAI'
  
 mysql = MySQL(app)
-
-# Dummy user
-users = {
-    'user1@example.com': 'password1',
-    'user2@example.com': 'password2'
-}
-
 
 #removing warnings
 
@@ -58,25 +64,27 @@ with open('./models/Doctor_Specialist_Model.pkl', 'rb') as f:
 @app.route('/login', methods=['POST'])
 def login():
 
-@app.route('/login', methods=['POST'])
-def login():
-
     data = request.get_json()
     email = data.get('email')
     password = data.get('password')
     print(email,password)
-    
-    # Check if the email exists in the users dictionary
-    if email in users:
-        if password == users[email]:
-            return jsonify({'message': 'Login successful'})
-        else:
-            return jsonify({'message': 'Incorrect password'}), 401
+
+    cursor = mysql.connection.cursor()
+    cursor.execute('SELECT * FROM signup WHERE email = %s', (email,))
+    user = cursor.fetchone()
+    cursor.close()
+
+    print(user)
+
+    if user and bcrypt.check_password_hash(user[4], password):  # Assuming that password is the third column in the users table
+        session['email'] = email
+        return jsonify({"login":"login Successful"})
+        return jsonify(logged_in=True, email=email)
     else:
-        return jsonify({'message': 'Email not found'}), 404
+        return jsonify(logged_in=False, message='Login failed. Please check your email and password.')
 
-    return data
 
+#This is SignUp Form
 @app.route('/signup', methods=['POST'])
 def signup():
 
@@ -88,14 +96,21 @@ def signup():
     phone_number = data.get('phone_number')
     password = data.get('password')
 
+    hashed_password = bcrypt.generate_password_hash(password)
+    bcrypt_pwd = bcrypt.check_password_hash(hashed_password,password)
+#    is_valid = bcrypt.check_password_hash 
+#    (hashed_password, password) 
+
+    print(hashed_password)
+    print(bcrypt_pwd)
+
+
 
     print(data)
     cursor = mysql.connection.cursor()
-    cursor.execute("INSERT INTO signup VALUES (%s,%s,%s,%s,%s)",(first_name,last_name,email,phone_number,password))
+    cursor.execute("INSERT INTO signup VALUES (%s,%s,%s,%s,%s)",(first_name,last_name,email,phone_number,hashed_password))
     cursor.connection.commit()
     cursor.close()
-
-    return jsonify({"success": True, "message": "Registration successful"})
 
     return jsonify({"success": True, "message": "Registration successful"})
 

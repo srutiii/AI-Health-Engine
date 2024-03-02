@@ -1,6 +1,6 @@
-from flask import Flask, request, jsonify
-# from flask_cors import CORS
-# from flask_mysqldb import MySQL
+from flask import Flask, request, jsonify, session
+from flask_cors import CORS
+from flask_mysqldb import MySQL
 import pandas as pd
 import numpy as np
 import pickle
@@ -9,6 +9,9 @@ from scipy.stats import mode
 import warnings
 from sklearn.ensemble import RandomForestClassifier
 from collections import Counter
+from flask_bcrypt import Bcrypt 
+from flask_mail import Mail, Message
+
 
 
 app = Flask(__name__)
@@ -30,6 +33,7 @@ users = {
 
 
 #removing warnings
+
 warnings.filterwarnings("ignore", category=UserWarning)
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 
@@ -50,6 +54,9 @@ with open('./models/Doctor_Specialist_Model.pkl', 'rb') as f:
    specialization = pickle.load(f)
 
 
+#This is a Login Page
+@app.route('/login', methods=['POST'])
+def login():
 
 @app.route('/login', methods=['POST'])
 def login():
@@ -90,6 +97,21 @@ def signup():
 
     return jsonify({"success": True, "message": "Registration successful"})
 
+    return jsonify({"success": True, "message": "Registration successful"})
+
+
+#This is for Contact Us form
+@app.route('/contact', methods = ['GET','POST'])
+def contact():
+
+    data = request.get_json()
+
+
+
+    msg = Message(subject='Hello from the other side!', sender='peter@mailtrap.io', recipients=['paul@mailtrap.io'])
+    msg.body = "Hey Paul, sending you this email from my Flask app, lmk if it works"
+    mail.send(msg)
+    return "Message sent!"
 
 #Route for disease prediction...
 @app.route('/diseasepredict/<symptoms>',methods = ['GET','POST'])

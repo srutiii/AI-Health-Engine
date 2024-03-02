@@ -39,7 +39,7 @@ const Contact = () => {
                       Our Location
                     </h4>
                     <p className="text-sm font-playfair italic  dark:text-dark-6">
-                      Kolkata, West Bengal
+                      Mumbai
                     </p>
                   </div>
                 </div>
@@ -104,7 +104,7 @@ const Contact = () => {
                       Email Address
                     </h4>
                     <p className="text-sm font-playfair italic  dark:text-dark-6">
-                      ai@gmail.com
+                      aihealth@gmail.com
                     </p>
                   </div>
                 </div>

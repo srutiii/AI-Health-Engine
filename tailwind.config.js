@@ -15,7 +15,6 @@ export default {
         light_text: "#201658",
         dark_text: "#98ABEE",
         button: "#7d9bce",
-        
       },
       keyframes: {
         slidein: {
@@ -28,9 +27,14 @@ export default {
             transform: "translateY(0)",
           },
         },
+        "infinite-scroll": {
+          from: { transform: "translateX(0)" },
+          to: { transform: "translateX(-100%)" },
+        },
       },
       animation: {
         slidein: "slidein 1s ease 300ms",
+        "infinite-scroll": "infinite-scroll 25s linear infinite",
       },
     },
   },

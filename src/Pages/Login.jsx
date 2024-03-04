@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import {useFormik} from 'formik'
+import { useFormik } from "formik";
 import { loginSchema } from "../schemas";
 
 const initialValues = {
@@ -9,47 +9,53 @@ const initialValues = {
 };
 
 export const Login = () => {
-  const [error, setError] = useState(null)
-  const [LoggedIn, setLoggedIn] = useState(false)
+  const [error, setError] = useState(null);
+  const [LoggedIn, setLoggedIn] = useState(false);
 
+  const { values, errors, touched, handleSubmit, handleBlur, handleChange } =
+    useFormik({
+      initialValues: initialValues,
+      validationSchema: loginSchema,
+      onSubmit: async (values) => {
+        try {
+          const response = await fetch("http://localhost:5000/login", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(values),
+          });
 
-  const {values, errors, touched, handleSubmit, handleBlur, handleChange} = useFormik({
-    initialValues: initialValues,
-    validationSchema: loginSchema,
-    onSubmit: async (values) => {
-      try {
-        const response = await fetch('http://localhost:5000/login', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(values),
-        });
+          const data = await response.json();
 
-        const data = await response.json();
-
-        if (data.success) {
-          // Handle successful login, e.g., redirect to another page or store authentication token
-          setLoggedIn(true)
-          console.log('Login successful');
-        } else {
-          setError(data.message);
+          if (data.success) {
+            // Handle successful login, e.g., redirect to another page or store authentication token
+            setLoggedIn(true);
+            console.log("Login successful");
+          } else {
+            setError(data.message);
+          }
+        } catch (error) {
+          console.error("Error during login:", error);
+          setError("An error occurred during login");
         }
-      } catch (error) {
-        console.error('Error during login:', error);
-        setError('An error occurred during login');
-      }
-    },
-  });
+      },
+    });
 
   return (
-    <div className="relative h-screen flex flex-col items-center justify-center p-5 w-full bg-white dark:bg-gray-950">
-      <div className="border-2 border-t-teal-300 border-r-blue-950 border-b-blue-950  border-l-teal-400 rounded p-4  shadow-blue-300 shadow-2xl mt-10 dark:shadow-lg dark:shadow-blue-950 font-nunito">
+    <div className="relative flex flex-col lg:items-end items-center justify-center  w-full bg-background dark:bg-gray-900 h-screen ">
+      <img
+        src="src/assets/artificial-intelligence-doctor-concept-ai-medicine-ai-assisted-diagnostic_706554-13.avif"
+        alt=""
+        className="absolute w-full h-full lg:flex hidden animate-slidein [--slidein-delay:600ms] "
+      />
+      <div className="absolute bg-black bg-opacity-50 z-10 w-full h-full "></div>
+      <div className="border-2 border-light_text  rounded p-4 shadow-light_text  shadow-md dark:border-dark_text  mt-10 m-4 dark:shadow-lg dark:shadow-dark_text font-nunito text-light_text dark:text-dark_text z-20 mx-10 ">
         <div className="">
-          <h1 className="font-bold capitalize text-4xl justify-center items-center flex text-blue-400 p-7">
+          <h1 className="font-bold capitalize text-4xl justify-center items-center flex text-light_text dark:text-dark_text p-7">
             login
           </h1>
-          <p className="text-xs px-12 py-2 text-blue-400 font-semibold font-feedback">
+          <p className="text-xs px-12 py-2 text-gray-300 font-semibold font-feedback">
             Welcome back to your health hub, where your well-being is our
             priority!
           </p>
@@ -62,7 +68,7 @@ export const Login = () => {
               id="email"
               type="email"
               placeholder="Email"
-              className="bg-blue-100 px-6 py-3 rounded-md mb-3"
+              className="bg-transparent shadow-sm shadow-light_text dark:shadow-dark_text font-medium  px-6 py-3 mb-3"
               value={values.email}
               onChange={handleChange}
               onBlur={handleBlur}
@@ -76,7 +82,7 @@ export const Login = () => {
               id="password"
               type="password"
               placeholder="Password"
-              className="bg-blue-100 px-6 py-3 rounded-md  mb-5"
+              className="bg-transparent shadow-sm shadow-light_text dark:shadow-dark_text font-medium  px-6 py-3  mb-5"
               value={values.password}
               onChange={handleChange}
               onBlur={handleBlur}
@@ -90,7 +96,7 @@ export const Login = () => {
             <p>
               New user?
               <Link to="/signup">
-                <span className="p-2 capitalize text-blue-500 font-semibold">
+                <span className="p-2 capitalize text-light_text dark:text-dark_text font-semibold">
                   sign up
                 </span>
               </Link>
@@ -101,7 +107,7 @@ export const Login = () => {
               <button
                 type="submit"
                 onClick={handleSubmit}
-                className="capitalize bg-cyan-700 hover:bg-blue-300 hover:text-blue-600 font-semibold text-white px-8 py-2 rounded"
+                className="capitalize bg-button  font-semibold text-white px-8 py-2 rounded"
               >
                 login
               </button>

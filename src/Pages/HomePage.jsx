@@ -8,6 +8,7 @@ import Service from "./Services";
 import { Link } from "react-router-dom";
 import { FaArrowRight } from "react-icons/fa";
 import { motion, useScroll } from "framer-motion";
+import PageDivider from "../components/PageDivider";
 
 function HomePage() {
   return (
@@ -58,7 +59,7 @@ function HomePage() {
             alt=""
             className="absolute bg-blend-multiply opacity-80 right-10  md:right-5 bottom-24 md:bottom-5 "
           />
-          <img
+          {/* <img
             src="src/assets/medical-app.png"
             alt=""
             className="absolute   md:right-80 md:top-36  md:w-52 "
@@ -67,7 +68,7 @@ function HomePage() {
             src="src/assets/artificial-intelligence.png"
             alt=""
             className="absolute md:right-24 md:bottom-16  md:w-24"
-          />
+          /> */}
           {/* <img
             src="src/assets/internet.png"
             alt=""
@@ -99,7 +100,7 @@ function HomePage() {
             interventions for a healthier tomorrow. Welcome to the future of
             healthcare.
           </p>
-          <div className="flex ">
+          {/* <div className="flex ">
             <img
               src="src/assets/medical.png"
               alt=""
@@ -121,9 +122,9 @@ function HomePage() {
                 </li>
               </ul>
             </div>
-          </div>
+          </div> */}
         </div>
-
+        <PageDivider />
         {/* <div className="my-20">
           <Service />
         </div> */}

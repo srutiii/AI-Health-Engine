@@ -1,9 +1,7 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import {useFormik} from 'formik'
+import { Link, useNavigate } from "react-router-dom";
+import { useFormik } from "formik";
 import { signupSchema } from "../schemas";
-
-
 
 const initialValues = {
   first_name: "",
@@ -15,43 +13,60 @@ const initialValues = {
 };
 
 export const Signup = () => {
+  const navigate = useNavigate();
+  const [signup, setSignup] = useState(false);
+  const [error, setError] = useState(false);
 
-  const {values, errors, touched, handleBlur, handleChange, handleSubmit} = useFormik({
-    initialValues : initialValues,
-    validationSchema : signupSchema,
-    onSubmit: async (values) => {
-      try {
-        const response = await fetch('http://localhost:5000/signup', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(values),
-        });
+  // distructuring the values.
+  const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
+    useFormik({
+      initialValues: initialValues,
+      validationSchema: signupSchema,
+      onSubmit: async (values) => {
+        try {
+          const response = await fetch("http://localhost:5000/signup", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(values),
+          });
 
-        const data = await response.json();
+          const data = await response.json();
 
-        if (data.success) {
-          // Handle successful signup, e.g., redirect to another page
-          console.log('Signup successful');
-        } else {
-          setError(data.message);
+          if (data.success) {
+            // Handle successful signup, e.g., redirect to another page
+            console.log("Signup successful");
+            setSignup(true);
+          } else {
+            setError(data.message);
+          }
+        } catch (error) {
+          console.error("Error during signup:", error);
+          setError("An error occurred during signup");
         }
-      } catch (error) {
-        console.error('Error during signup:', error);
-        setError('An error occurred during signup');
-      }
-    }
-  })
+      },
+    });
 
+  // redirect to login page.
+  if (signup) {
+    navigate("/login");
+    return null;
+  }
   return (
-    <div className="relative flex flex-col items-center justify-center w-full bg-white dark:bg-gray-950 h-screen">
-      <div className="border-2 border-t-teal-300 border-r-blue-950 border-b-blue-950  border-l-teal-400 rounded p-2 shadow-blue-300 shadow-2xl  mt-10 m-4 dark:shadow-lg dark:shadow-blue-950 font-nunito">
+    <div className="relative flex flex-col lg:items-end items-center justify-center  w-full bg-background dark:bg-gray-900 h-screen">
+      <img
+        src="src/assets/artificial-intelligence-doctor-concept-ai-medicine-ai-assisted-diagnostic_706554-13.avif"
+        alt=""
+        className="absolute w-full h-full lg:flex hidden animate-slidein [--slidein-delay:600ms] "
+      />
+      <div className="absolute bg-black bg-opacity-50 z-10 w-full h-full "></div>
+      <div className="border-2 border-light_text  rounded p-4 shadow-light_text  shadow-md dark:border-dark_text  mt-10 m-4 dark:shadow-lg dark:shadow-dark_text font-nunito text-light_text dark:text-dark_text z-20 mx-10 ">
         <div className="">
-          <h1 className="font-semibold capitalize text-4xl  justify-center items-center flex text-blue-400 p-4">
+          <h1 className="font-semibold capitalize text-4xl  justify-center items-center flex  p-4">
             register
           </h1>
-          <p className="text-xs px-3 py-2 text-blue-400 font-semibold font-feedback flex justify-center">
+          <p className="text-xs px-3 py-2 text-gray-300 font-semibold font-feedback flex justify-center">
             Join AIHealth Engine for personalized wellness with just a click –
             Register today!
           </p>
@@ -59,9 +74,9 @@ export const Signup = () => {
 
         <form>
           <div className="flex flex-col justify-center px-2 ">
-            <div className=" md:flex rounded-md  mb-5 px-4">
+            <div className=" md:flex rounded-md  mb-5 px-4 text-gray-300">
               {/* <label htmlFor="name" className="font-sans font-semibold uppercase">Name</label> */}
-              <div className="flex flex-col px-2 py-2">
+              <div className="flex flex-col px-2 py-2 ">
                 <input
                   name="first_name"
                   id="first_name"
@@ -71,7 +86,7 @@ export const Signup = () => {
                   onChange={handleChange}
                   onBlur={handleBlur}
                   autoComplete="off"
-                  className="bg-blue-100  px-4 py-2"
+                  className="bg-transparent shadow-sm shadow-light_text dark:shadow-dark_text font-medium px-4 py-2"
                 />
                 {errors.first_name && touched.first_name ? (
                   <p className="text-sm text-red-700">{errors.first_name}</p>
@@ -87,7 +102,7 @@ export const Signup = () => {
                   onChange={handleChange}
                   onBlur={handleBlur}
                   autoComplete="off"
-                  className="bg-blue-100 px-4 py-2"
+                  className="bg-transparent shadow-sm shadow-light_text dark:shadow-dark_text font-medium   px-4 py-2"
                 />
                 {errors.last_name && touched.last_name ? (
                   <p className="text-sm text-red-700">{errors.last_name}</p>
@@ -101,7 +116,7 @@ export const Signup = () => {
                 id="phone_number"
                 type="number"
                 placeholder="Phone Number"
-                className="bg-blue-100 px-4 py-2 w-full"
+                className="bg-transparent shadow-sm shadow-light_text dark:shadow-dark_text font-medium    px-4 py-2 w-full"
                 value={values.phone_number}
                 onChange={handleChange}
                 onBlur={handleBlur}
@@ -118,13 +133,15 @@ export const Signup = () => {
                 id="email"
                 type="email"
                 placeholder="Email"
-                className="bg-blue-100 px-4 py-2 w-full"
+                className="bg-transparent shadow-sm shadow-light_text dark:shadow-dark_text font-medium    px-4 py-2 w-full"
                 value={values.email}
                 onChange={handleChange}
                 onBlur={handleBlur}
                 autoComplete="off"
               />
-              {errors.email && touched.email ? <p className="text-sm text-red-700">{errors.email}</p> : null}
+              {errors.email && touched.email ? (
+                <p className="text-sm text-red-700">{errors.email}</p>
+              ) : null}
             </div>
             <div className=" md:flex rounded-md  mb-5 px-4">
               <div className="flex flex-col px-2 py-2">
@@ -134,7 +151,7 @@ export const Signup = () => {
                   id="password"
                   type="password"
                   placeholder="Password"
-                  className="bg-blue-100 px-4 py-2"
+                  className="bg-transparent shadow-sm shadow-light_text dark:shadow-dark_text font-medium    px-4 py-2"
                   value={values.password}
                   onChange={handleChange}
                   onBlur={handleBlur}
@@ -153,14 +170,16 @@ export const Signup = () => {
                   id="confirm_password"
                   type="password"
                   placeholder="Confirm Password"
-                  className="bg-blue-100 px-4 py-2"
+                  className="bg-transparent shadow-sm shadow-light_text dark:shadow-dark_text font-medium   px-4 py-2"
                   value={values.confirm_password}
                   onChange={handleChange}
                   onBlur={handleBlur}
                   autoComplete="off"
                 />
                 {errors.confirm_password && touched.confirm_password ? (
-                  <p className="text-sm text-red-700">{errors.confirm_password}</p>
+                  <p className="text-sm text-red-700">
+                    {errors.confirm_password}
+                  </p>
                 ) : null}
               </div>
             </div>
@@ -169,7 +188,7 @@ export const Signup = () => {
             <p>
               Already have an account?
               <Link to="/login">
-                <span className="p-2 capitalize text-blue-500 font-semibold">
+                <span className="p-2 capitalize text-light_text font-semibold">
                   log in
                 </span>
               </Link>
@@ -180,7 +199,7 @@ export const Signup = () => {
               <button
                 type="submit"
                 onClick={handleSubmit}
-                className="capitalize bg-cyan-700 hover:bg-blue-300 hover:text-blue-600 font-semibold text-white px-8 py-2 rounded"
+                className="capitalize bg-button font-semibold text-white px-8 py-2 rounded"
               >
                 register
               </button>

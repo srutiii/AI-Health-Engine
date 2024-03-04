@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useFormik } from "formik";
 import { loginSchema } from "../schemas";
+import { useAuth } from "../context/AuthContext";
 
 const initialValues = {
   email: "",
@@ -10,7 +11,8 @@ const initialValues = {
 
 export const Login = () => {
   const [error, setError] = useState(null);
-  const [LoggedIn, setLoggedIn] = useState(false);
+  const [LoggedIn, setLoggedIn] = useState(true);
+  const { handleLogin } = useAuth();
 
   const { values, errors, touched, handleSubmit, handleBlur, handleChange } =
     useFormik({
@@ -31,6 +33,7 @@ export const Login = () => {
           if (data.success) {
             // Handle successful login, e.g., redirect to another page or store authentication token
             setLoggedIn(true);
+            handleLogin();
             console.log("Login successful");
           } else {
             setError(data.message);

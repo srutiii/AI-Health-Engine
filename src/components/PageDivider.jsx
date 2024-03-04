@@ -8,7 +8,7 @@ function PageDivider() {
           <img
             src="src/assets/medical-report.png"
             alt=""
-            className=" flex justify-centeru"
+            className=" flex justify-center"
           />
         </div>
         <p className="text-red-400 font-black text-6xl w-2/3 flex justify-center items-center text-justify px-10">

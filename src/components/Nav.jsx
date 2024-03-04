@@ -1,18 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { FaMoon, FaSun } from "react-icons/fa6";
 import { Link } from "react-router-dom";
-import { motion} from "framer-motion";
-
+import { motion } from "framer-motion";
+import { useAuth } from "../context/AuthContext";
 
 function Nav() {
-  const [mode, setMode] = useState('light')
+  const [mode, setMode] = useState("light");
+  const { loggedIn, handleLogout } = useAuth();
 
-  useEffect(()=>{
+  useEffect(() => {
     if (mode === "dark") {
-      document.documentElement.classList.add('dark')
-  }else{
-    document.documentElement.classList.remove('dark')
-  }},[mode])
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, [mode]);
+
   return (
     <div className="">
       <div className="fixed z-20 w-full flex justify-between bg-transparent font-nunito backdrop-blur-xl ">
@@ -40,8 +43,10 @@ function Nav() {
                 scale: 1.2,
               }}
             >
-              <Link to="/services" 
-              className="py-1 px-4 font-semibold text-xl border border-transparent rounded-full cursor-pointer ">
+              <Link
+                to="/services"
+                className="py-1 px-4 font-semibold text-xl border border-transparent rounded-full cursor-pointer "
+              >
                 Services
               </Link>
             </motion.div>
@@ -50,8 +55,10 @@ function Nav() {
                 scale: 1.2,
               }}
             >
-              <Link to="/contact"
-              className="py-1 px-4 font-semibold text-xl border border-transparent rounded-full cursor-pointer ">
+              <Link
+                to="/contact"
+                className="py-1 px-4 font-semibold text-xl border border-transparent rounded-full cursor-pointer "
+              >
                 Contact Us
               </Link>
             </motion.div>
@@ -71,17 +78,38 @@ function Nav() {
               <FaMoon className="text-black cursor-pointer" />
             )}
           </button>
-          <Link to="/login">
-            <button className="bg-button px-3 py-2 md:px-4 md:h-10 rounded m-2  font-nunito font-semibold">
-              Login
-            </button>
-          </Link>
-          <Link to="/signup">
-            <button className="bg-button px-3 py-2 md:px-4 md:h-10 rounded m-2  font-nunito font-semibold ">
-             
-              Register
-            </button>
-          </Link>
+          {loggedIn ? (
+            <>
+              <Link to="/profile">
+                <button>
+                  <img
+                    src="src/assets/user.png"
+                    alt=""
+                    className="w-16 px-2 py-2 transition transform hover:scale-105"
+                  />
+                </button>
+              </Link>
+              <button
+                onClick={handleLogout}
+                className="bg-button px-3 py-2 md:px-4 md:h-10 rounded m-2  font-nunito font-semibold"
+              >
+                Logout
+              </button>
+            </>
+          ) : (
+            <>
+              <Link to="/login">
+                <button className="bg-button px-3 py-2 md:px-4 md:h-10 rounded m-2  font-nunito font-semibold">
+                  Login
+                </button>
+              </Link>
+              <Link to="/signup">
+                <button className="bg-button px-3 py-2 md:px-4 md:h-10 rounded m-2  font-nunito font-semibold ">
+                  Register
+                </button>
+              </Link>
+            </>
+          )}
         </div>
       </div>
     </div>

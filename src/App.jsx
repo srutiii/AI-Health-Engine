@@ -13,7 +13,7 @@ import DoctorRecommed from "./Pages/DoctorRecommed";
 
 function App() {
   return (
-    <div className="bg-background dark:bg-gray-900 scrollbar-hide overflow-hidden">
+    <div className="bg-background dark:bg-gray-900 overflow-hidden scrollbar-hide">
       <Nav />
       {/*<Chattbot />*/}
       <Routes>

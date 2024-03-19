@@ -1,31 +1,24 @@
 import React from "react";
+import { LiaEyeSolid } from "react-icons/lia";
+import { Link } from "react-router-dom";
 
-function BlogCards({ img, title, description }) {
+function BlogCards({ article: { pic, title, link, views, author } }) {
   return (
-    <div className="m-3">
-      <div className="flex  w-full h-[170px] md:h-[170px] lg:w-[850px] lg:h-[200px] bg-gray-200 rounded dark:text-black dark:bg-gray-800 font-nunito">
-        <div className="w-[250px]  overflow-hidden ">
-          <img src={img} className="h-full  md:h-[200px] rounded-l  " />
-        </div>
-        {/* <div className=" flex flex-col"> */}
-          <div className="relative md:pr-4 flex flex-col justify-start md:justify-center w-full">
-            <div>
-              <h2 className="font-black text-sm md:text-xl lg:pb-4 p-2 dark:text-cyan-600">
-                {title}
-              </h2>
-              <p className=" px-4 md:p-2 pb-3 lg:pb-3 text-xs lg:text-sm font-feedback text-gray-700 dark:text-gray-300 ">
-                {description}
-              </p>
-            </div>
-            <div className="absolute bottom-2 right-4">
-              <button className="px-2  text-md md:px-4 justify-end md:justify-center md:items-center capitalize bg-cyan-950 py-1 lg:py-3 rounded text-white font-semibold ">
-                read full article
-              </button>
-            </div>
+    <Link to={link}>
+      <div className=" w-[300px] h-[350px] m-3 rounded overflow-hidden shadow-lg shadow-gray-500 transition-all ease-in-out hover:scale-105 delay-100 duration-200">
+        <div>
+          <img src={pic} alt="img" />
+          <h2 className="flex justify-center items-center py-2 px-3 tracking-wide font-semibold text-gray-800 dark:text-gray-300  text-xl">
+            {title}
+          </h2>
+          <p className="text-sm text-gray-500 px-3 font-semibold">{author}</p>
+          <div className="flex justify-end items-center px-2 font-bold text-gray-500">
+            <LiaEyeSolid />
+            <p className="px-2">{views}</p>
           </div>
-        {/* </div> */}
+        </div>
       </div>
-    </div>
+    </Link>
   );
 }
 

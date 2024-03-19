@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify, session
-from flask_cors import CORS
-from flask_mysqldb import MySQL
+# from flask_cors import CORS
+# from flask_mysqldb import MySQL
 import pandas as pd
 import numpy as np
 import pickle
@@ -9,34 +9,34 @@ from scipy.stats import mode
 import warnings
 from sklearn.ensemble import RandomForestClassifier
 from collections import Counter
-from flask_bcrypt import Bcrypt 
-from flask_mail import Mail, Message
+# from flask_bcrypt import Bcrypt 
+# from flask_mail import Mail, Message
 
 
 
 app = Flask(__name__)
 
-app.config['MAIL_SERVER'] = 'sandbox.smtp.mailtrap.io'
-app.config['MAIL_PORT'] = 2525
-app.config['MAIL_USERNAME'] = 'zerowood70@gmail.com'
-app.config['MAIL_PASSWORD'] = '1julyabhi'
-app.config['MAIL_USE_TLS'] = True
-app.config['MAIL_USE_SSL'] = False
+# app.config['MAIL_SERVER'] = 'sandbox.smtp.mailtrap.io'
+# app.config['MAIL_PORT'] = 2525
+# app.config['MAIL_USERNAME'] = 'zerowood70@gmail.com'
+# app.config['MAIL_PASSWORD'] = '1julyabhi'
+# app.config['MAIL_USE_TLS'] = True
+# app.config['MAIL_USE_SSL'] = False
 
 
-bcrypt = Bcrypt(app) 
-CORS(app) 
-mail = Mail(app)
+# bcrypt = Bcrypt(app) 
+# # CORS(app) 
+# mail = Mail(app)
 
 app.secret_key = "helloAI"
 
 
-app.config['MYSQL_HOST'] = 'localhost'
-app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = ''
-app.config['MYSQL_DB'] = 'helloAI'
+# app.config['MYSQL_HOST'] = 'localhost'
+# app.config['MYSQL_USER'] = 'root'
+# app.config['MYSQL_PASSWORD'] = ''
+# app.config['MYSQL_DB'] = 'helloAI'
  
-mysql = MySQL(app)
+# mysql = MySQL(app)
 
 #removing warnings
 

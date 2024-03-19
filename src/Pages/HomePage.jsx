@@ -128,6 +128,9 @@ function HomePage() {
         {/* <div className="my-20">
           <Service />
         </div> */}
+        <div>
+          <Blogs/>
+        </div>
         <div className="">
           <Testimonials />
         </div>

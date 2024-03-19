@@ -10,6 +10,9 @@ export default {
       playfair: ["Playfair Display", "serif"],
     },
     extend: {
+      backgroundImage: {
+        img1: 'url("https://wallpapers.com/images/featured/healthcare-oco8w27tkw40cp90.jpg")',
+      },
       colors: {
         background: "#fffff4",
         light_text: "#201658",

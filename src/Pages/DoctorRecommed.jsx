@@ -23,7 +23,7 @@ function DoctorRecommed() {
   };
 
   const proxyUrl = "https://cors-anywhere.herokuapp.com/";
-  const targetUrl = "https://medicahospitals.in/patients-visitors/find-doctor/";
+  const targetUrl = "https://www.practo.com/doctors";
   const url = proxyUrl + targetUrl;
   const fetchData = async () => {
     try {

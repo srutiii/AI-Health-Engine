@@ -16,7 +16,7 @@ function Testimonials() {
   //   arrows: false,
   // };
   return (
-    <div className=" w-full md:h-[280px] h-[400px] p-5 ">
+    <div className=" w-full md:h-[280px] h-[300px] p-5 z-10">
       <div className="">
         <div className="flex justify-center items-center">
           <h1 className="capitalize text-3xl font-bold font-playfair xl:text-4xl text-light_text dark:text-dark_text ">

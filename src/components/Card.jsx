@@ -1,6 +1,6 @@
-import React from 'react'
+import React from "react";
 
-function Card({title, img, feedback, author }) {
+function Card({ title, img, feedback, author }) {
   return (
     <div className="">
       <div className=" md:h-[250px] h-[200px] flex  justify-center items-center my-5">
@@ -31,4 +31,4 @@ function Card({title, img, feedback, author }) {
   );
 }
 
-export default Card
+export default Card;

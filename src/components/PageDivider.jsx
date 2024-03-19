@@ -1,19 +1,15 @@
 import React from "react";
+import { FaHandPointRight } from "react-icons/fa";
 
 function PageDivider() {
   return (
-    <div className="h-[500px] flex w-full">
-      <div className="bg-light_text w-full flex opacity-80 ">
-        <div className="flex mx-10">
-          <img
-            src="src/assets/medical-report.png"
-            alt=""
-            className=" flex justify-center"
-          />
+    <div className="">
+      <div className="h-[400px] flex w-full justify-start items-center ">
+        <div className="bg-img1 w-full flex h-full justify-start items-center  bg-fixed">
+          <div className="p-4 text-gray-200 font-medium text-4xl font-playfair bg-slate-900 bg-opacity-50 w-full h-full">
+           
+          </div>
         </div>
-        <p className="text-red-400 font-black text-6xl w-2/3 flex justify-center items-center text-justify px-10">
-          Access all health benefits from the comfort of your own space.
-        </p>
       </div>
     </div>
   );
